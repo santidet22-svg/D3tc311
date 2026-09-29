@@ -1,0 +1,78 @@
+DETCELL PARA ANDROID (app instalable, funciona sin internet)
+=============================================================
+
+Contenido: index.html, manifest.webmanifest, sw.js y carpeta icons/.
+Hay que subir TODO junto (misma carpeta) a un hosting con HTTPS gratuito.
+
+OPCION FACIL (2 minutos) - Netlify Drop
+1. Entrá a https://app.netlify.com/drop desde la PC.
+2. Arrastrá la carpeta descomprimida (detcell-android) a la página.
+3. Te da un link https://algo.netlify.app  (podés cambiarle el nombre).
+
+OTRAS OPCIONES: GitHub Pages, Cloudflare Pages o Firebase Hosting.
+
+INSTALAR EN EL CELULAR
+1. Abrí el link en Chrome (Android).
+2. Tocá el botón azul "Instalar app" o menú (⋮) > "Instalar app".
+3. Queda el ícono DetCell en el escritorio y se abre a pantalla completa.
+
+DATOS EN LA NUBE (recomendado)
+1. En la PC: Configuración > "Datos en la nube" > elegí usuario y contraseña
+   (mín. 8 caracteres) y tocá "Crear cuenta nueva". Tus datos se suben solos.
+2. En el celular: mismo lugar, mismo usuario y contraseña > "Iniciar sesión".
+   Se descargan los datos de la nube.
+3. Desde ahí, cada cambio se guarda en la nube y aparece en los otros
+   dispositivos. Sin internet la app sigue funcionando y sube los cambios
+   cuando vuelve la conexión.
+- La contraseña de la nube NO se puede recuperar: anotala.
+- Es distinta de la contraseña de bloqueo (que sigue siendo por dispositivo).
+- Requiere publicar el sitio en Netlify desde este repositorio (no con Drop),
+  porque usa una función y la base de datos de Netlify.
+
+PASAR TUS DATOS AL CELULAR SIN LA NUBE (manual)
+Sin la nube, los datos se guardan en cada dispositivo por separado. Para llevarlos:
+1. En la versión de la PC: Balance > Copia de seguridad > Exportar (descarga un .json).
+2. Pasá el .json al celular (WhatsApp, Drive, cable).
+3. En el celular: pestaña Balance > Copia de seguridad > Importar.
+Hacé backups seguido: si se borran los datos del navegador/app, se pierden.
+
+NOTAS
+- Si actualizás index.html, subí de nuevo los archivos y cambiá
+  VERSION en sw.js (ej. detcell-v2) para que los celulares se actualicen.
+- El botón "atrás" de Android navega entre pestañas.
+
+USUARIO Y CONTRASEÑA (bloqueo de la app)
+- La primera vez que abras la app te pide crear usuario y contraseña.
+- Te muestra un CODIGO DE RECUPERACION una sola vez: anotalo o sacale captura.
+  Es la única forma de recuperar el acceso si olvidás la contraseña.
+- Botón 🔒 (bloquear ahora) arriba a la derecha. Botón 🔑: te lleva a
+  Configuración > "Usuario, contraseña y recuperación", donde cambiás usuario,
+  contraseña, correo de recuperación, bloqueo automático y código.
+- CORREO DE RECUPERACION: la app no tiene servidor y no puede enviar mails
+  sola. El botón "Enviarme el código por correo" genera un código nuevo y
+  abre tu app de correo con el mensaje listo para enviártelo. Con ese código
+  se restablece la contraseña desde "Olvidé mi contraseña".
+- Bloqueo automático: por defecto tras 5 min sin usar (configurable).
+  Con "al minimizar" se bloquea cada vez que salís de la app, incluso al
+  abrir la cámara o WhatsApp.
+- 5 intentos fallidos = espera creciente (30 s, 1 min, 2 min...).
+- La contraseña se guarda cifrada (PBKDF2), nunca en texto plano.
+- Los datos NO se cifran: el bloqueo frena a quien tenga tu celular en la
+  mano, pero no a alguien con conocimientos técnicos y acceso al dispositivo.
+  Usá también el bloqueo de pantalla del celular.
+- La contraseña es por dispositivo (PC y celular tienen la suya).
+
+USUARIOS Y ADMINISTRADOR
+- El usuario que ya existía pasa a ser ADMINISTRADOR automáticamente.
+- Configuración > "Usuarios y permisos" (solo admin): agregar usuarios, resetear
+  su clave (deberán elegir una nueva al entrar), habilitar/deshabilitar, dar o quitar
+  el rol de admin y eliminar. Cada acción pide la contraseña del admin.
+- Siempre queda al menos un administrador activo. El código de recuperación es del admin.
+- Los usuarios comunes solo ven "Mi cuenta" en Configuración (sin backup ni ajustes).
+- Con la nube conectada, los usuarios (con sus contraseñas cifradas) se sincronizan
+  entre dispositivos: creás o cambiás uno en la PC y aparece en el celular.
+- DISPOSITIVO NUEVO: en la pantalla inicial tocá "Ya tengo una cuenta: iniciar sesión",
+  poné usuario y contraseña de la NUBE (los de Configuración > Datos en la nube) y
+  luego ingresá con tu usuario de siempre. Antes, abrí la app una vez en el
+  dispositivo original (con internet y conectado a la nube) para que suba los usuarios.
+- El correo de recuperación empieza vacío: cada administrador pone el suyo (opcional).
